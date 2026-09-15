@@ -8,7 +8,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://myrepo
+    repoURL: https://github.com/TheSiberianPunk/homelab-k3s-thing.git
     targetRevision: HEAD
     path: infrastructure/metallb-config/resources
   destination:

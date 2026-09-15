@@ -14,7 +14,7 @@ spec:
      helm:
       valueFiles:
          - $values/infrastructure/pihole/values.yaml
-   - repoURL: https://myrepo
+   - repoURL: https://github.com/TheSiberianPunk/homelab-k3s-thing.git
      targetRevision: HEAD
      ref: values.yaml
   destination:
