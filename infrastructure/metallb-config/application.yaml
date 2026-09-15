@@ -5,16 +5,16 @@ metadata:
   namespace: argocd
   annotations:
     argocd.argoproj.io/syncwave: "-2" # after metallb controller
-  spec:
-    project: default
-    source:
-      repoURL: https://myrepo
-      targetRevision: HEAD
-      path: infrastructure/metallb-config/resources
-    destination:
-      server: https://kubernetes.default.svc
-      namespace: metallb-system
-    syncPolicy:
-      automated:
-        prune: true
-        selfHeal: true
+spec:
+  project: default
+  source:
+    repoURL: https://myrepo
+    targetRevision: HEAD
+    path: infrastructure/metallb-config/resources
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: metallb-system
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

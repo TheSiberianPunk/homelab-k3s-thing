@@ -9,10 +9,10 @@ spec:
     repoURL: https://myrepo
     targetRevision: HEAD
     path: bootstrap
-    destination:
-      server: https://kubernetes.default.svc # internal kuber API
-      namespace: argocd
-    syncPolicy:
-      automated:
-        prune: true
-        selfHeal: true
+  destination:
+    server: https://kubernetes.default.svc # internal kuber API
+    namespace: argocd
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

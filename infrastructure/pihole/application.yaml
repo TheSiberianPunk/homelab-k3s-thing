@@ -5,24 +5,24 @@ metadata:
   namespace: argocd
   annotations:
     argocd.argoproj.io/syncwave: "0" # may need to be changed
-  spec:
-    project: default
-    sources:
-     - repoURL: https://helmforge.github.io/helm-charts
-       chart: pihole
-       targetRevision: "2.0.13"
-       helm:
-        valueFiles:
-           - $values/infrastructure/pihole/values.yaml
-     - repoURL: https://myrepo
-       targetRevision: HEAD
-       ref: values.yaml
-    destination:
-      server: https://kubernetes.default.svc
-      namespace: pihole
-    syncPolicy:
-      automated:
-        prune: true
-        selfHeal: true
-      syncOptions:
-       - CreateNamespace=true
+spec:
+  project: default
+  sources:
+   - repoURL: https://helmforge.github.io/helm-charts
+     chart: pihole
+     targetRevision: "2.0.13"
+     helm:
+      valueFiles:
+         - $values/infrastructure/pihole/values.yaml
+   - repoURL: https://myrepo
+     targetRevision: HEAD
+     ref: values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: pihole
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+     - CreateNamespace=true
