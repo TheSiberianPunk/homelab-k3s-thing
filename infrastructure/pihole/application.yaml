@@ -8,7 +8,7 @@ metadata:
 spec:
   project: default
   sources:
-   - repoURL: https://helmforge.github.io/helm-charts
+   - repoURL: ghcr.io/helmforgedev/helm/pihole
      chart: pihole
      targetRevision: "2.0.13"
      helm:
