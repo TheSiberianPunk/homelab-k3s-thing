@@ -1,0 +1,43 @@
+# get first time pass
+# kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
+# or for powershell
+# [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String((kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}")))
+# get argocd repo
+# helm repo add argo https://argoproj.github.io/argo-helm
+# install with redis arm64 version
+# helm install argocd argo/argo-cd --namespace argocd --create-namespace -f values.yaml
+# apply yaml for traefik ingress
+# kubectl apply -f argocd-ingress.yaml
+# restart to apply changes
+# kubectl rollout restart deployment argocd-server -n argocd
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: argocd-server
+  namespace: argocd
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`argocd.home`)
+      priority: 10
+      services:
+        - name: argocd-server
+          port: 80
+    - kind: Rule
+      match: Host(`argocd.home`) && Header(`Content-Type`, `application/grpc`)
+      priority: 11
+      services:
+        - name: argocd-server
+          port: 80
+          scheme: h2c
+  tls: {} # self signed for now
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-cmd-params-cm
+  namespace: argocd
+data:
+  server.insecure: "true"

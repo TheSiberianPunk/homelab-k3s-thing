@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argocd
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/syncwave: "-5" # before metallb and traefik
+spec:
+  project: default
+  sources:
+     - repoURL: https://argoproj.github.io/argo-helm
+       chart: argo-cd
+       targetRevision: "10.9.1"
+       helm:
+         valueFiles:
+          - $values/infrastructure/argocd/values.yaml
+     - repoURL: https://myrepo
+       targetRevision: HEAD
+       ref: values
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    # autosync is risky
+    syncOptions:
+     - CreateNamespace=true

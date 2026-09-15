@@ -1,0 +1,4 @@
+redis:
+  image:
+    repository: library/redis
+    tag: "7-alpine"

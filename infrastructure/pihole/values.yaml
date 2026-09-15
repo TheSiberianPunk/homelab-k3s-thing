@@ -1,0 +1,84 @@
+# что потребовалось:
+# прописать домен в /etc/pihole/pihole.toml
+# прописать ручки /admin и /api для traefik
+pihole:
+  timezone: Asia/Yekaterinburg
+  dnssec: true
+  upstreamDns: "8.8.8.8;8.8.4.4"
+  listeningMode: ALL
+admin:
+  existingSecret: pihole-admin-secret
+  existingSecretKey: password
+  # password: plaintext password
+
+serviceDns:
+  type: LoadBalancer
+  loadBalancerIP: "192.168.0.201"
+  externalTrafficPolicy: Local # change to Local if using MetalLB Cluster
+serviceWeb:
+  type: ClusterIP # enforced despite being default, returns 404 on web browser otherwise
+  port: 8080
+ingress:
+  enabled: true
+  ingressClassName: traefik
+  hosts:
+    - host: pihole.home
+      paths:
+        - path: /
+          pathType: Prefix
+        #- path: /admin
+        #  pathType: Prefix
+        #- path: /api
+        #  pathType: Prefix
+dns:
+  adlists:
+    - "https://raw.githubusercontent.com/unknownFalleN/xiaomi-dns-blocklist/master/xiaomi_dns_block.lst"
+    - "https://raw.githubusercontent.com/r0xd4n3t/pihole-adblock-lists/main/pihole_adlists.txt"
+
+  whitelist:
+  # these services are impairing home network devices and their services
+    - "e.reddit.com"
+    - "r0.mail.ru"
+    - "r0.mradx.net"
+    - "imasdk.googleapis.com"
+    - "eye.targetads.io"
+    - "androidtvwatsonfe-pa.googleapis.com"
+    - "btloader.com"
+    - "a.ad.gt"
+    - "seg.ad.gt"
+    - "beacon.wikia-services.com"
+    - "securepubads.g.doubleclick.net"
+    - "cdn.cookielaw.org"
+    - "cnbj1.fds.api.xiaomi.com"
+    - "kion.ru"
+    - "g.live.com"
+    - "default.exp-tas.com"
+    - "account.xiaomi.com"
+    - "home.mi.com"
+    - "api.account.xiaomi.com"
+    - "ruac.account.xiaomi.com"
+    - "sgpac.account.xiaomi.com"
+    - "api.io.mi.com"
+    - "i2.api.io.mi.com"
+    - "fin.api.micloud.xiaomi.net"
+    - "in.find.api.micloud.xiaomi.net"
+    - "global.market.xiaomi.com"
+    - "ultimateota.d.miui.com"
+    - "update.miui.com"
+    - "us.find.api.micloud.xiaomi.net"
+  customRecords:
+    - "192.168.0.200 argocd.home"
+
+  conditionalForwarding:
+    enabled: true
+    network: 192.168.0.0/24
+    router: 192.168.0.10
+gravity:
+  updateOnInit: true
+persistence:
+  enabled: true
+  size: 2Gi
+metrics:
+  enabled: true
+  serviceMonitor:
+    enabled: false # enable later for prometheus metrics
