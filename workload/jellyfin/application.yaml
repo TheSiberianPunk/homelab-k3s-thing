@@ -10,7 +10,7 @@ spec:
   sources:
    - repoURL: https://jellyfin.github.io/jellyfin-helm
      chart: jellyfin
-     targetRevision: "3.3.0"
+     targetRevision: "10.11.8"
      helm:
       valueFiles:
          - $values/workload/jellyfin/values.yaml
