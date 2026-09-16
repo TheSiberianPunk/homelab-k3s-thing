@@ -1,0 +1,8 @@
+---
+- name: Bootstrapping basic Pi configs
+  hosts: all
+  become: true
+
+  roles:
+    - mount-hdd
+    - k3s-install

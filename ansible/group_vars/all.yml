@@ -1,0 +1,5 @@
+---
+vault_uuid: "24786A167869E6D0" # enter your disk uuid here
+vault_mount_path: "/vault"
+vault_fstype: "ntfs3" # uses ntfs
+vault_opts: "defaults,nofail,x-systemd.automount,uid=1000,gid=1000,umask=0022"

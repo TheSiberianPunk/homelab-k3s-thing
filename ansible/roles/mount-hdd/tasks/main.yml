@@ -1,0 +1,15 @@
+---
+- name: make sure mount exists
+  ansible.builtin.file:
+    path: "{{ vault_mount_path }}"
+    state: directory
+    mode: '0755'
+
+# uses NTFS
+- name: mount by UUID
+  ansible.posix.mount:
+    path: "{{ vault_mount_path }}"
+    src: "UUID={{ vault_uuid }}"
+    fstype: "{{ vault_fstype }}"
+    opts: "{{ vault_opts }}"
+    state: mounted
