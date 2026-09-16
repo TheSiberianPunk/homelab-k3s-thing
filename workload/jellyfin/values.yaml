@@ -1,0 +1,57 @@
+# this is an unproven way of mounting volumes
+#extraVolumes:
+#  - name: jellyfin-tv
+#    hostPath:
+#      path: /vault/MEDIA/tv
+#      type: Directory
+#  - name: jellyfin-movies
+#    hostPath:
+#      path: /vault/MEDIA/movies
+#      type: Directory
+#  - name: jellyfin-anime
+#    hostPath:
+#      path: /vault/MEDIA/anime
+#      type: Directory
+
+#extraVolumeMounts:
+#  - name: jellyfin-tv
+#    mountPath: /media/tv
+#    #readOnly: true
+#  - name: jellyfin-movies
+#    mountPath: /media/movies
+#    #readOnly: true
+#  - name: jellyfin-anime
+#    mountPath: /media/anime
+
+mediaVolumes:
+  tv:
+    hostPath: /vault/MEDIA/TV
+  movies:
+    hostPath: /vault/MEDIA/Movies
+  anime:
+    hostPath: /vault/MEDIA/Anime
+
+persistence:
+  config:
+    enabled: true
+    size: 5Gi
+  cache:
+    enabled: true
+    size: 10Gi
+
+resources:
+  requests:
+    cpu: 500m
+    memory: 512Mi
+  limits:
+    cpu: 2000m
+    memory: 2Gi
+
+ingress:
+  enabled: true
+  className: traefik
+  hosts:
+   - host: jellyfin.home
+     paths:
+      - path: /
+        pathType: Prefix
