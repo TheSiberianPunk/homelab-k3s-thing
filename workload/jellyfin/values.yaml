@@ -1,35 +1,35 @@
 # this is an unproven way of mounting volumes
-#extraVolumes:
-#  - name: jellyfin-tv
-#    hostPath:
-#      path: /vault/MEDIA/tv
-#      type: Directory
-#  - name: jellyfin-movies
-#    hostPath:
-#      path: /vault/MEDIA/movies
-#      type: Directory
-#  - name: jellyfin-anime
-#    hostPath:
-#      path: /vault/MEDIA/anime
-#      type: Directory
+extraVolumes:
+  - name: jellyfin-tv
+    hostPath:
+      path: /vault/MEDIA/TV
+      type: Directory
+  - name: jellyfin-movies
+    hostPath:
+      path: /vault/MEDIA/Movies
+      type: Directory
+  - name: jellyfin-anime
+    hostPath:
+      path: /vault/MEDIA/Anime
+      type: Directory
 
-#extraVolumeMounts:
-#  - name: jellyfin-tv
-#    mountPath: /media/tv
-#    #readOnly: true
-#  - name: jellyfin-movies
-#    mountPath: /media/movies
-#    #readOnly: true
-#  - name: jellyfin-anime
-#    mountPath: /media/anime
+extraVolumeMounts:
+  - name: jellyfin-tv
+    mountPath: /media/tv
+    #readOnly: true
+  - name: jellyfin-movies
+    mountPath: /media/movies
+    #readOnly: true
+  - name: jellyfin-anime
+    mountPath: /media/anime
 
-mediaVolumes:
-  tv:
-    hostPath: /vault/MEDIA/TV
-  movies:
-    hostPath: /vault/MEDIA/Movies
-  anime:
-    hostPath: /vault/MEDIA/Anime
+#mediaVolumes:
+#  tv:
+#    hostPath: /vault/MEDIA/TV
+#  movies:
+#    hostPath: /vault/MEDIA/Movies
+#  anime:
+#    hostPath: /vault/MEDIA/Anime
 
 persistence:
   config:
