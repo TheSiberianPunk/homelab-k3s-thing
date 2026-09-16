@@ -1,5 +1,5 @@
 # this is an unproven way of mounting volumes
-extraVolumes:
+volumes:
   - name: jellyfin-tv
     hostPath:
       path: /vault/MEDIA/TV
@@ -13,15 +13,15 @@ extraVolumes:
       path: /vault/MEDIA/Anime
       type: Directory
 
-extraVolumeMounts:
+volumeMounts:
   - name: jellyfin-tv
-    mountPath: /media/tv
+    mountPath: /tv
     #readOnly: true
   - name: jellyfin-movies
-    mountPath: /media/movies
+    mountPath: /movies
     #readOnly: true
   - name: jellyfin-anime
-    mountPath: /media/anime
+    mountPath: /anime
 
 #mediaVolumes:
 #  tv:
