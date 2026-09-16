@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: workload
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "10" # workload comes after infrastructure
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/TheSiberianPunk/homelab-k3s-thing.git
+    targetRevision: HEAD
+    path: workload
+    directory:
+      recurse: true
+  destination:
+    server: https://kubernetes.default.svc # internal kuber API
+    namespace: argocd
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
