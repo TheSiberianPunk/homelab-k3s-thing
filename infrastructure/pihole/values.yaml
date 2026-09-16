@@ -68,6 +68,7 @@ dns:
     - "us.find.api.micloud.xiaomi.net"
   customRecords:
     - "192.168.0.200 argocd.home"
+    - "192.168.0.200 jellyfin.home"
 
   conditionalForwarding:
     enabled: true
