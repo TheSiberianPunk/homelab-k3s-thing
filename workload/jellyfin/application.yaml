@@ -4,7 +4,7 @@ metadata:
   name: jellyfin
   namespace: argocd
   annotations:
-    argocd.argoproj.io/syncwave: "2" # workload starts after infrastructure 
+    argocd.argoproj.io/syncwave: "2" 
 spec:
   project: default
   sources:

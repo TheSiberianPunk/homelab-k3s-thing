@@ -1,4 +1,3 @@
-# this is an unproven way of mounting volumes
 volumes:
   - name: jellyfin-tv
     hostPath:
@@ -22,14 +21,6 @@ volumeMounts:
     #readOnly: true
   - name: jellyfin-anime
     mountPath: /anime
-
-#mediaVolumes:
-#  tv:
-#    hostPath: /vault/MEDIA/TV
-#  movies:
-#    hostPath: /vault/MEDIA/Movies
-#  anime:
-#    hostPath: /vault/MEDIA/Anime
 
 persistence:
   config:
