@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://github.com/TheSiberianPunk/homelab-k3s-thing.git
     targetRevision: HEAD
-    path: infrastructure/media-storage/resources
+    path: infrastructure/media-storage-pvc/resources
   destination:
     server: https://kubernetes.default.svc
     namespace: qbittorrent
