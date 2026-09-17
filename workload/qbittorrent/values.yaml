@@ -1,0 +1,22 @@
+env:
+  TZ: Asia/Yekaterinburg
+ingress:
+  enabled: true
+  className: traefik
+  hosts:
+   - host: qbittorrent.home
+     paths:
+      - path: /
+        pathType: Prefix
+
+persistence:
+  config:
+    enabled: true
+    size: 5Gi
+    storageClassName: ""
+
+media:
+  enabled: true
+  existingClaim: media-storage-pvc
+  mountPath: /data
+  readOnly: false
