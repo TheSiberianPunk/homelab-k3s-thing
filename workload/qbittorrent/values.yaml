@@ -1,3 +1,5 @@
+image:
+  tag: libtorrentv1 # newer libtorrent version throttles speed at 1 Mb/s
 env:
   PUID: "1000"
   PGID: "1000"
