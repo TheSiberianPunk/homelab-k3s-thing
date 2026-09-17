@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: media-storage
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/syncwave: "-3" 
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/TheSiberianPunk/homelab-k3s-thing.git
+    targetRevision: HEAD
+    path: infrastructure/media-storage/resources
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: qbittorrent
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
