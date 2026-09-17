@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: vault-media-pvc
+  name: vault-media-pv
 spec:
   storageClassName: manual
   capacity:
@@ -21,6 +21,6 @@ spec:
   storageClassName: manual
   accessModes:
     - ReadWriteOnce
-  resorces:
+  resources:
     requests:
       storage: 1800Gi

@@ -4,7 +4,7 @@ metadata:
   name: metallb-config
   namespace: argocd
   annotations:
-    argocd.argoproj.io/syncwave: "-2" # after metallb controller
+    argocd.argoproj.io/sync-wave: "-2" # after metallb controller
 spec:
   project: default
   source:

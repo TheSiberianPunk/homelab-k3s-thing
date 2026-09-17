@@ -69,6 +69,7 @@ dns:
   customRecords:
     - "192.168.0.200 argocd.home"
     - "192.168.0.200 jellyfin.home"
+    - "192.168.0.200 qbittorrent.home"
 
   conditionalForwarding:
     enabled: true

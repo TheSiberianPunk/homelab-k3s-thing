@@ -17,6 +17,6 @@ persistence:
 
 media:
   enabled: true
-  existingClaim: media-storage-pvc
+  existingClaim: vault-media-pvc
   mountPath: /data
   readOnly: false

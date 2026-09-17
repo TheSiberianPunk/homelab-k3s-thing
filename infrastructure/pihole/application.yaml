@@ -4,7 +4,7 @@ metadata:
   name: pihole
   namespace: argocd
   annotations:
-    argocd.argoproj.io/syncwave: "0" # may need to be changed
+    argocd.argoproj.io/sync-wave: "0" # may need to be changed
 spec:
   project: default
   sources:

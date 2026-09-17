@@ -4,7 +4,7 @@ metadata:
   name: argocd
   namespace: argocd
   annotations:
-    argocd.argoproj.io/syncwave: "-5" # before metallb and traefik
+    argocd.argoproj.io/sync-wave: "-5" # before metallb and traefik
 spec:
   project: default
   sources:
