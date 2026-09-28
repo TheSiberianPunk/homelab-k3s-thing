@@ -1,0 +1,60 @@
+# grafana + prometheus stack configuration
+prometheus:
+  prometheusSpec:
+    resources:
+      requests:
+        memory: 256Mi
+        cpu: 100m
+      limits:
+        memory: 1Gi
+        cpu: 500m
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: local-path
+          resources:
+            requests:
+              storage: 15Gi
+    # discover ServiceMonitors from other apps
+    serviceMonitorSelectorNilUsesHelmValues: false
+    podMonitorSelectorNilUsesHelmValues: false
+
+grafana:
+  resources:
+    requests:
+      memory: 128Mi
+      cpu: 50m
+    limits:
+      memory: 512Mi
+      cpu: 200m
+  persistence:
+    enabled: true
+    storageClassName: local-path
+    size: 5Gi
+  admin: # sealed secret
+    existingSecret: grafana-admin-credentials
+    userKey: admin-user
+    passwordKey: admin-password
+
+alertmanager:
+  alertmanagerSpec: 
+    resources:
+      requests:
+        memory: 32Mi
+      limits:
+        memory: 64Mi
+    storage:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: local-path
+          resources:
+            requests:
+              storage: 1Gi
+
+# kube metrics
+kube-state-metrics:
+  resources:
+    requests:
+      memory: 64Mi
+    limits:
+      memory: 128Mi

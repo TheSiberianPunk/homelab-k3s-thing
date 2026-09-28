@@ -70,6 +70,8 @@ dns:
     - "192.168.0.200 argocd.home"
     - "192.168.0.200 jellyfin.home"
     - "192.168.0.200 qbittorrent.home"
+    - "192.168.0.200 grafana.home"
+    - "192.168.0.200 prometheus.home"
 
   conditionalForwarding:
     enabled: true
@@ -83,4 +85,4 @@ persistence:
 metrics:
   enabled: true
   serviceMonitor:
-    enabled: false # enable later for prometheus metrics
+    enabled: true # disable without prometheus
