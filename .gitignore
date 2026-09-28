@@ -5,3 +5,10 @@ ansible/inventory/hosts.yml
 ansible/secrets/
 .vault_pass
 .vault_password
+
+# secrets
+*secret*.yaml
+*secret*.yml
+*-secret.yaml
+!sealed-*.yaml
+!*-sealed*.yaml
